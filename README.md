@@ -38,3 +38,5 @@ func main() {
 **cl.GetAsset(2)**  Here we have to insert how many facts we want to know
 
 ![resp](https://cdn.discordapp.com/attachments/592741750393536522/1189588069754617856/image.png?ex=659eb539&is=658c4039&hm=095039a90f08415fa9601939af6048e40472f33ffc24ffb5a95d020ae973419e&)
+
+***But unfortunately it does not support receiving a response with multiple facts in the specified language.Perhaps soon I will try to add a method with such an implementation.***
