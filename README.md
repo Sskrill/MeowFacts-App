@@ -19,6 +19,7 @@ func main() {
 		log.Fatal(err)
 
 	}
+
 	err = cl.GetAssetOnLang("rus")
 	if err != nil {
 
@@ -26,6 +27,12 @@ func main() {
 	}
 
 	err = cl.GetAsset(2)
+	if err != nil {
+
+		log.Fatal(err)
+	}
+
+	err = cl.GetAssetsOnLang(3, "rus")
 	if err != nil {
 
 		log.Fatal(err)
@@ -39,4 +46,6 @@ func main() {
 
 ![resp](https://cdn.discordapp.com/attachments/592741750393536522/1189588069754617856/image.png?ex=659eb539&is=658c4039&hm=095039a90f08415fa9601939af6048e40472f33ffc24ffb5a95d020ae973419e&)
 
-***But unfortunately it does not support receiving a response with multiple facts in the specified language.Perhaps soon I will try to add a method with such an implementation.***
+**cl.GetAssetsOnLang(3, "rus")** This method makes multiple requests in the specified language.(*But it sends a log before each request, because I have a RoundTripper with logging, maybe in the future I will change it and try to make the log once, but I will have to use DefaultClient instead of my Client structure*)
+
+![resps](https://cdn.discordapp.com/attachments/592741750393536522/1189802856606335126/image.png?ex=659f7d42&is=658d0842&hm=3df2174696d8133559d85982f2264eee01b3f8351f6a96f19056ad730f784b9e&)
