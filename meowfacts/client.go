@@ -22,7 +22,7 @@ func NewClient(timeout time.Duration) (*Client, error) {
 	return &Client{
 		client: &http.Client{
 			Timeout: timeout,
-			Transport: &LoggingRoundTripper{
+			Transport: &loggingRoundTripper{
 				logger: os.Stdout,
 				next:   http.DefaultTransport,
 			},
@@ -78,4 +78,30 @@ func (c *Client) GetAssetOnLang(lang string) error {
 	}
 	return nil
 
+}
+func (c *Client) GetAssetsOnLang(count int, lang string) error {
+	if count <= 0 {
+		return errors.New("count is zero or less then zero")
+	}
+	var as AssetData
+	url := fmt.Sprint("https://meowfacts.herokuapp.com/?lang=", lang)
+
+	for i := 0; i < count; i++ {
+		resp, err := c.client.Get(url)
+		if err != nil {
+			return err
+		}
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		if err = json.Unmarshal(body, &as); err != nil {
+
+			return err
+		}
+		defer resp.Body.Close()
+		fmt.Println(i+1, ":", as.Data[0])
+	}
+
+	return nil
 }

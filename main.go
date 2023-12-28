@@ -13,6 +13,7 @@ func main() {
 		log.Fatal(err)
 
 	}
+
 	err = cl.GetAssetOnLang("rus")
 	if err != nil {
 
@@ -20,6 +21,12 @@ func main() {
 	}
 
 	err = cl.GetAsset(2)
+	if err != nil {
+
+		log.Fatal(err)
+	}
+
+	err = cl.GetAssetsOnLang(3, "rus")
 	if err != nil {
 
 		log.Fatal(err)
